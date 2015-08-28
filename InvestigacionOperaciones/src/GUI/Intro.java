@@ -11,9 +11,10 @@ package GUI;
  */
 public class Intro extends javax.swing.JFrame {
 
-    String objetivo;
+    public static String objetivo;
     public Intro() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,6 +31,7 @@ public class Intro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Investigacion de operaciones");
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,9 +86,8 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        MetodoGrafico gr= new MetodoGrafico();
-        
-        gr.setVisible(true);
+        Objetivo o= new Objetivo();
+        o.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

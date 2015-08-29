@@ -7,6 +7,7 @@ package GUI;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,7 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class MetodoGrafico extends javax.swing.JFrame {
 
-    public static DefaultListModel listmodel=new DefaultListModel();
+    public static DefaultListModel listmodel = new DefaultListModel();
+    public static DefaultListModel resX = new DefaultListModel();
+    public static DefaultListModel resY = new DefaultListModel();
+    public static DefaultListModel resR = new DefaultListModel();
+    public static String obX;
+    public static String obY;
+
     public MetodoGrafico() {
         initComponents();
         setLocationRelativeTo(null);
@@ -45,6 +52,9 @@ public class MetodoGrafico extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -89,6 +99,7 @@ public class MetodoGrafico extends javax.swing.JFrame {
             }
         });
 
+        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -129,6 +140,20 @@ public class MetodoGrafico extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("Debug");
+
+        jMenuItem1.setText("Debug");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +193,7 @@ public class MetodoGrafico extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(jButton4))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -180,34 +205,42 @@ public class MetodoGrafico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Intro in= new Intro();
+        Intro in = new Intro();
         in.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int sel=jList1.getSelectedIndex();
-        if(sel<0){
+        int sel = jList1.getSelectedIndex();
+        int i= listmodel.getSize();
+        if (sel < 0) {
             JOptionPane.showMessageDialog(rootPane, "No has seleccionado una restriccion");
-        }
-        else{
-            int respuesta=JOptionPane.showConfirmDialog(rootPane, "Quieres eliminar la restriccion seleccionada?", "Eliminar restriccion",JOptionPane.YES_NO_OPTION);
-            if(respuesta==JOptionPane.YES_OPTION){
+        } else {
+            int respuesta = JOptionPane.showConfirmDialog(rootPane, "Quieres eliminar la restriccion seleccionada?", "Eliminar restriccion", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION) {
                 jList1.setModel(listmodel);
                 listmodel.remove(sel);
+                resX.remove(sel);
+                resY.remove(sel);
+                resR.remove(sel);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jList1.setModel(listmodel);
-        Restriccion r =new Restriccion();
+        Restriccion r = new Restriccion();
         r.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Debug d= new Debug();
+        d.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +285,9 @@ public class MetodoGrafico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public static javax.swing.JList jList1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
